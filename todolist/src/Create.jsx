@@ -5,12 +5,19 @@ const Create = ({ addTodo }) => {
   const [task, setTask] = useState('');
 
   const handleAdd = () => {
-    axios.post('http://localhost:3000/add', { task: task })
+    if (!task)
+    {
+      alert('Please enter a task');
+    } else
+    {
+       axios.post('http://localhost:3000/add', { task: task })
       .then((res) => {
         addTodo(res.data); 
         setTask(''); 
       })
       .catch((err) => console.log(err));
+    }
+   
   };
 
   const handleChange = (e) => {
